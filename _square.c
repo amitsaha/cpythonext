@@ -21,15 +21,21 @@ PyMODINIT_FUNC init_square(void)
 }
 
 
-static PyObject *chi2_chi2(PyObject *self, PyObject *args)
+static PyObject *square_square(PyObject *self, PyObject *args)
 {
     int x;
-    PyObject *x_obj;
 
-    /* Parse the input tuple */
-    if (!PyArg_ParseTuple(args, "d", &x, &x_obj))
+    /* Parse the input tuple 
+    * https://docs.python.org/2/c-api/arg.html#c.PyArg_ParseTuple
+    */
+    if (!PyArg_ParseTuple(args, "i", &x))
         return NULL;
+  
+    int squared = square(x);
+    
+    PyObject *ret = Py_BuildValue("i", squared);
 
+    return ret;
 
 }
 
