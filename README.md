@@ -50,6 +50,35 @@ TypeError: integer argument expected, got float
 
 ### Packaging and distribution
 
+Build a wheel on Fedora 24, import `setup()` from `setuptools`:
+
+```
+$ python setup.py bdist_rpm
+```
+
+The wheel in `dist` will be installable, and you can do a `pip install` and it will copy the `.so` file which you can
+then import.
+
+However, if you now try to install this wheel on Ubuntu 14.04, you will get:
+
+```
+$ pip install cpython_extension_demo-0.0.0-cp27-cp27mu-linux_x86_64.whl 
+cpython_extension_demo-0.0.0-cp27-cp27mu-linux_x86_64.whl is not a supported wheel on this platform.
+Storing debug log for failure in /root/.pip/pip.log
+root@53b45d51afba:/code# cat /root/.pip/pip.log 
+cpython_extension_demo-0.0.0-cp27-cp27mu-linux_x86_64.whl is not a supported wheel on this platform.
+Exception information:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 257, in run
+    InstallRequirement.from_line(name, None))
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 168, in from_line
+    raise UnsupportedWheel("%s is not a supported wheel on this platform." % wheel.filename)
+UnsupportedWheel: cpython_extension_demo-0.0.0-cp27-cp27mu-linux_x86_64.whl is not a supported wheel on this platform.
+
+```
+
 
 
 ## Python 3
