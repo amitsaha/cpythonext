@@ -79,6 +79,66 @@ UnsupportedWheel: cpython_extension_demo-0.0.0-cp27-cp27mu-linux_x86_64.whl is n
 
 ```
 
+### Building manylinux1 wheels
+
+Instructions from https://github.com/pypa/python-manylinux-demo
+
+```
+$ docker pull quay.io/pypa/manylinux1_x86_64  
+$ docker run --rm -v `pwd`:/workspace:z quay.io/pypa/manylinux1_x86_64  /workspace/build-manylinux1-wheels.sh
+```
+
+We will have `manylinux1` wheels in `wheelhouse`. On Fedora 24 (our host OS):
+
+```
+$ pip install --no-index --find-links file:///`pwd`/wheelhouse cpython_extension_demo --verbose
+Ignoring indexes: https://pypi.python.org/simple
+Collecting cpython_extension_demo
+  0 location(s) to search for versions of cpython-extension-demo:
+  Skipping link file:////home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse (from -f); not a file
+  Skipping link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp27-cp27m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Found link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp27-cp27mu-manylinux1_x86_64.whl, version: 0.0.0
+  Skipping link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp26-cp26mu-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp33-cp33m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp34-cp34m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp26-cp26m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp35-cp35m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Local files found: /home/asaha/work/amitsaha/cpythonextension-demo/wheelhouse/cpython_extension_demo-0.0.0-cp27-cp27mu-manylinux1_x86_64.whl
+  Using version 0.0.0 (newest of versions: 0.0.0)
+Installing collected packages: cpython-extension-demo
+
+Successfully installed cpython-extension-demo-0.0.0
+Cleaning up...
+```
+
+
+Now, in Ubuntu 14.04:
+
+```
+$ # ensure pip >= 8.1
+
+$ /usr/local/bin/pip install --no-index --find-links file:///code/wheelhouse cpython_extension_demo --verbose
+Ignoring indexes: https://pypi.python.org/simple
+Collecting cpython_extension_demo
+  0 location(s) to search for versions of cpython-extension-demo:
+  Skipping link file:///code/wheelhouse (from -f); not a file
+  Skipping link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp27-cp27m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Found link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp27-cp27mu-manylinux1_x86_64.whl, version: 0.0.0
+  Skipping link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp26-cp26mu-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp33-cp33m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp34-cp34m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp26-cp26m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Skipping link file:///code/wheelhouse/cpython_extension_demo-0.0.0-cp35-cp35m-manylinux1_x86_64.whl; it is not compatible with this Python
+  Local files found: /code/wheelhouse/cpython_extension_demo-0.0.0-cp27-cp27mu-manylinux1_x86_64.whl
+  Using version 0.0.0 (newest of versions: 0.0.0)
+Installing collected packages: cpython-extension-demo
+
+Successfully installed cpython-extension-demo-0.0.0
+Cleaning up...
+
+```
+
+
 
 
 ## Python 3
