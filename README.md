@@ -1,5 +1,7 @@
-Building the extension for Python 2
-===================================
+## Python 2
+
+
+### Building and using
 
 First, we will have to install the dependencies we need to compile our C extension. On Fedora:
 
@@ -46,8 +48,18 @@ Traceback (most recent call last):
 TypeError: integer argument expected, got float
 ```
 
-Building the extension for Python 3
-===================================
+### Packaging and distribution
+
+
+
+## Python 3
+
+
+### Building and using
+
+TODO
+
+### Packaging and distribution
 
 TODO
 
